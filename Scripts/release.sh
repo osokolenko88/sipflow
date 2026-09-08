@@ -6,11 +6,19 @@
 # Пакує SIPflow.app для випуску й оновлює файл каска Homebrew.
 #
 # Використання:
-#   ./Scripts/release.sh                       # для osokolenko88
-#   GITHUB_OWNER=інший-логін ./Scripts/release.sh
+#   ./Scripts/release.sh              # зібрати, спакувати, оновити каск
+#   ./Scripts/release.sh --publish    # плюс залити реліз на GitHub і запушити тап
 #
-# На виході: dist/SIPflow-<версія>.zip, його sha256 і готовий Casks/sipflow.rb.
+# Без --publish нічого назовні не йде: скрипт лише готує архів і файли.
+#
+# Каск обовʼязково має відповідати саме тому архіву, що лежить у релізі:
+# кожна збірка дає новий підпис, отже новий sha256. Тому копіювання каска
+# в репозиторій тапу автоматизоване — вручну про це легко забути, і тоді
+# Homebrew відмовиться встановлювати через розбіжність контрольної суми.
 set -euo pipefail
+
+PUBLISH=false
+[ "${1:-}" = "--publish" ] && PUBLISH=true
 
 cd "$(dirname "$0")/.."
 ROOT="$PWD"
@@ -80,15 +88,45 @@ cask "sipflow" do
 end
 CASKEOF
 
+# Репозиторій тапу — окремий, бо Homebrew вимагає префікс homebrew- у назві.
+TAP="${TAP_PATH:-$ROOT/../homebrew-$REPO}"
+if [ -d "$TAP/Casks" ]; then
+    echo "==> Синхронізація тапу"
+    cp "$CASK" "$TAP/Casks/sipflow.rb"
+    if git -C "$TAP" diff --quiet -- Casks/sipflow.rb; then
+        echo "    каск не змінився"
+    else
+        git -C "$TAP" add Casks/sipflow.rb
+        git -C "$TAP" commit -q -s -m "SIPflow $VERSION" \
+            -m "Контрольна сума архіву, доданого до релізу v$VERSION."
+        echo "    закомічено в $(cd "$TAP" && pwd)"
+    fi
+else
+    echo "==> Репозиторій тапу не знайдено ($TAP) — каск лишився тільки в проєкті"
+fi
+
+if [ "$PUBLISH" = true ]; then
+    echo "==> Публікація релізу v$VERSION"
+    if gh release view "v$VERSION" >/dev/null 2>&1; then
+        gh release upload "v$VERSION" "$ARCHIVE" --clobber
+        echo "    архів оновлено в наявному релізі"
+    else
+        gh release create "v$VERSION" "$ARCHIVE" --title "SIPflow $VERSION" --generate-notes
+    fi
+    if [ -d "$TAP/.git" ]; then
+        git -C "$TAP" push -q origin main && echo "    тап запушено"
+    fi
+fi
+
 echo
 echo "версія:  $VERSION"
 echo "архів:   $ARCHIVE ($(du -h "$ARCHIVE" | awk '{print $1}'))"
 echo "sha256:  $SHA"
 echo "каск:    ${CASK#$ROOT/}"
 echo
-echo "Далі:"
-echo "  1. Створіть реліз v$VERSION на GitHub і додайте до нього архів."
-echo "  2. Скопіюйте теку Distribution/homebrew-sipflow у репозиторій"
-echo "     github.com/$OWNER/homebrew-$REPO і запуште."
-echo "  3. Встановлення: brew tap $OWNER/$REPO && brew install --cask sipflow"
-echo "     Далі один раз: xattr -dr com.apple.quarantine /Applications/SIPflow.app"
+if [ "$PUBLISH" = true ]; then
+    echo "Опубліковано: https://github.com/$OWNER/$REPO/releases/tag/v$VERSION"
+else
+    echo "Нічого назовні не надіслано. Щоб опублікувати:"
+    echo "  ./Scripts/release.sh --publish"
+fi

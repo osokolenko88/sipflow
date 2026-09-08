@@ -95,14 +95,23 @@ GPLv3 is the only consistent option. Details in
 ## Releasing
 
 ```sh
-./Scripts/release.sh
+./Scripts/release.sh              # build and prepare everything locally
+./Scripts/release.sh --publish    # plus upload the release and push the tap
 ```
+
+Without `--publish` nothing leaves the machine.
 
 The script builds the app, **verifies that it does not depend on libraries
 outside the system ones** (otherwise the archive would not run on someone else's
 machine), packages the `.app` with `ditto` so the signature survives, computes
-the sha256 and refreshes the ready-made cask in
-[`Distribution/homebrew-sipflow`](Distribution/homebrew-sipflow).
+the sha256 and refreshes the cask in
+[`Distribution/homebrew-sipflow`](Distribution/homebrew-sipflow), then copies it
+into the tap repository next door and commits it there.
+
+That copying is automated on purpose: **every build produces a new signature and
+therefore a new sha256**, so a cask left behind after a rebuild would make
+Homebrew reject the download. Publishing in one pass keeps the archive in the
+release and the checksum in the cask in step.
 
 OpenSSL is linked statically precisely for that reason: otherwise the app would
 demand Homebrew at the hard-coded path `/opt/homebrew/opt/openssl@3`.
