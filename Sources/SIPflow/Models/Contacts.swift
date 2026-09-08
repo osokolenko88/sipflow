@@ -1,3 +1,7 @@
+// SIPflow — SIP-софтфон для macOS
+// Copyright (C) 2026 Oleg Sokolenko
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import Foundation
 
 /// Порівняння телефонних номерів. `380955158408`, `0955158408` і `+38 (095) 515-84-08`

@@ -73,6 +73,10 @@ xattr -dr com.apple.quarantine /Applications/SIPflow.app
 ## Ліцензія
 
 **GPL-3.0-or-later** — див. [`LICENSE`](LICENSE).
+Copyright (C) 2026 Oleg Sokolenko.
+
+Кожен вихідний файл несе коротку позначку `SPDX-License-Identifier` — так
+ліцензія лишається при файлі, навіть якщо його скопіювати окремо від проєкту.
 
 Версія саме третя, і це не довільний вибір: PJSIP дозволяє «GPLv2 або пізнішу»,
 але OpenSSL 3 має ліцензію Apache 2.0, несумісну з GPLv2. Оскільки застосунок

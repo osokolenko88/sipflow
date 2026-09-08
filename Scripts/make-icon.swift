@@ -1,4 +1,8 @@
 #!/usr/bin/env swift
+// SIPflow — SIP-софтфон для macOS
+// Copyright (C) 2026 Oleg Sokolenko
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 // Малює іконку застосунку і складає AppIcon.icns.
 //
 // Гліф — `phone-incoming-fill` із набору Phosphor Icons (MIT), його вихідний SVG

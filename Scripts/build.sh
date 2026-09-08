@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# SIPflow — SIP-софтфон для macOS
+# Copyright (C) 2026 Oleg Sokolenko
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Збирає SIPflow.app: SwiftPM-бінарник + bundle + іконка + ad-hoc підпис.
 # Повний Xcode не потрібен, достатньо Command Line Tools.
 set -euo pipefail

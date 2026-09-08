@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# SIPflow — SIP-софтфон для macOS
+# Copyright (C) 2026 Oleg Sokolenko
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Створює самопідписаний сертифікат для підпису SIPflow.
 #
 # Навіщо: ad-hoc підпис змінюється при кожній перезбірці, тому macOS вважає

@@ -1,3 +1,7 @@
+// SIPflow — SIP-софтфон для macOS
+// Copyright (C) 2026 Oleg Sokolenko
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import Foundation
 
 /// Пише лог pjsip у файл. Власний записувач, а не `pjsua_logging_config.log_filename`,
