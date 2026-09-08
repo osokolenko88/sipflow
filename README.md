@@ -73,6 +73,8 @@ source is both cheaper and cleaner.
   would require building pjsip from source for x86_64 and producing a universal
   binary.
 
+Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Licence
 
 **GPL-3.0-or-later** — see [`LICENSE`](LICENSE).

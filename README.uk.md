@@ -72,6 +72,8 @@ xattr -dr com.apple.quarantine /Applications/SIPflow.app
   Для Intel потрібно збирати pjsip із джерел під x86_64 і робити універсальний
   бінарник.
 
+Внески вітаються — правила в [CONTRIBUTING.uk.md](CONTRIBUTING.uk.md).
+
 ## Ліцензія
 
 **GPL-3.0-or-later** — див. [`LICENSE`](LICENSE).
