@@ -1,6 +1,6 @@
 cask "sipflow" do
   version "1.0"
-  sha256 "67ffac9e01adc5448150b0bb8f42a6907f5f0b4daa6d9a9f8426f1a062e8e81b"
+  sha256 "d59d0c2b41b51ba18ec0b346ddf4b295fb797fa4eacbffa8ebcef39df8f35145"
 
   url "https://github.com/osokolenko88/sipflow/releases/download/v#{version}/SIPflow-#{version}.zip"
   name "SIPflow"
