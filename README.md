@@ -54,11 +54,15 @@ designated => identifier "com.sipflow.app" and certificate root = H"…"
 
 ```sh
 brew tap osokolenko88/sipflow
+brew trust osokolenko88/sipflow
 brew install --cask sipflow
 xattr -dr com.apple.quarantine /Applications/SIPflow.app
 ```
 
-The third line is needed once. The app is signed with a self-signed certificate
+`brew trust` is required for any third-party tap: Homebrew 6 refuses to load
+casks from taps you have not explicitly trusted.
+
+The last line is needed once. The app is signed with a self-signed certificate
 and is not notarized, so Gatekeeper refuses a downloaded archive. The
 `--no-quarantine` flag is gone — Homebrew 6 removed it.
 

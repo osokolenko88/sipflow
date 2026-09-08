@@ -7,7 +7,7 @@ cask "sipflow" do
   desc "SIP softphone for macOS"
   homepage "https://github.com/osokolenko88/sipflow"
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
   depends_on arch: :arm64
 
   app "SIPflow.app"

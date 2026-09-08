@@ -53,11 +53,15 @@ designated => identifier "com.sipflow.app" and certificate root = H"…"
 
 ```sh
 brew tap osokolenko88/sipflow
+brew trust osokolenko88/sipflow
 brew install --cask sipflow
 xattr -dr com.apple.quarantine /Applications/SIPflow.app
 ```
 
-Третій рядок потрібен один раз. Застосунок підписано самопідписаним
+`brew trust` потрібен для будь-якого стороннього тапу: Homebrew 6 відмовляється
+завантажувати каски з тапів, яким користувач явно не довірився.
+
+Останній рядок потрібен один раз. Застосунок підписано самопідписаним
 сертифікатом і не нотаризовано, тому Gatekeeper блокує завантажений архів.
 Прапорця `--no-quarantine` більше немає — Homebrew 6 його прибрала.
 
