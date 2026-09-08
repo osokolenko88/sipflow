@@ -1,0 +1,4 @@
+module CPJSIP [system] {
+    header "shim.h"
+    export *
+}

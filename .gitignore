@@ -1,0 +1,10 @@
+# Збірка
+.build/
+build/
+dist/
+
+# Прев'ю, що не належать репозиторію
+ringtones.m4a
+icon-options.png
+
+.DS_Store
