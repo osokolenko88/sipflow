@@ -13,7 +13,7 @@
 ## Як встановлювати
 
 ```sh
-brew tap ваш-логін/sipflow
+brew tap osokolenko88/sipflow
 brew install --cask sipflow
 xattr -dr com.apple.quarantine /Applications/SIPflow.app
 ```

@@ -1,11 +1,11 @@
 cask "sipflow" do
   version "1.0"
-  sha256 "95a841c00337c7224d9ad531496d4599ed0dc6f79e25c4fee784b1eb13dbf4cc"
+  sha256 "67ffac9e01adc5448150b0bb8f42a6907f5f0b4daa6d9a9f8426f1a062e8e81b"
 
-  url "https://github.com/OWNER/sipflow/releases/download/v#{version}/SIPflow-#{version}.zip"
+  url "https://github.com/osokolenko88/sipflow/releases/download/v#{version}/SIPflow-#{version}.zip"
   name "SIPflow"
   desc "SIP softphone for macOS"
-  homepage "https://github.com/OWNER/sipflow"
+  homepage "https://github.com/osokolenko88/sipflow"
 
   depends_on macos: ">= :sequoia"
   depends_on arch: :arm64

@@ -6,14 +6,15 @@
 # Пакує SIPflow.app для випуску й оновлює файл каска Homebrew.
 #
 # Використання:
-#   GITHUB_OWNER=ваш-логін ./Scripts/release.sh
+#   ./Scripts/release.sh                       # для osokolenko88
+#   GITHUB_OWNER=інший-логін ./Scripts/release.sh
 #
 # На виході: dist/SIPflow-<версія>.zip, його sha256 і готовий Casks/sipflow.rb.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 ROOT="$PWD"
-OWNER="${GITHUB_OWNER:-OWNER}"
+OWNER="${GITHUB_OWNER:-osokolenko88}"
 REPO="${GITHUB_REPO:-sipflow}"
 
 VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$ROOT/Resources/Info.plist")

@@ -31,7 +31,7 @@ SIP-софтфон для macOS: компактне вікно в дусі «Т�
 
 ```sh
 brew install pjproject
-git clone https://github.com/OWNER/sipflow && cd sipflow
+git clone https://github.com/osokolenko88/sipflow && cd sipflow
 ./Scripts/make-signing-identity.sh   # один раз
 ./Scripts/build.sh
 open build/SIPflow.app
@@ -50,7 +50,7 @@ designated => identifier "com.sipflow.app" and certificate root = H"…"
 ### Через Homebrew — зручніше, але з одним ручним кроком
 
 ```sh
-brew tap OWNER/sipflow
+brew tap osokolenko88/sipflow
 brew install --cask sipflow
 xattr -dr com.apple.quarantine /Applications/SIPflow.app
 ```
@@ -86,7 +86,7 @@ Copyright (C) 2026 Oleg Sokolenko.
 ## Випуск
 
 ```sh
-GITHUB_OWNER=ваш-логін ./Scripts/release.sh
+./Scripts/release.sh
 ```
 
 Скрипт збирає застосунок, **перевіряє, що він не залежить від бібліотек поза
